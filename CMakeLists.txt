@@ -22,8 +22,12 @@ message(STATUS "=============================================")
 message(STATUS "")
 
 
-include(build/engine.cmake)
+if(BUILDTOOLS STREQUAL "1")
+	include(build/buildtools.cmake)
+else()
+	include(build/engine.cmake)
 
-add_subdirectory(src)
+	add_subdirectory(src)
 
-include(build/packages.cmake)
+	include(build/packages.cmake)
+endif()

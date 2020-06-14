@@ -1,6 +1,6 @@
+if(NOT BUILDTOOLS STREQUAL "1")
 add_subdirectory(addattr)
 #add_subdirectory(desklink)
-add_subdirectory(rc)
 
 UsePrivateHeaders(GLOBAL app)
 
@@ -25,4 +25,7 @@ Application(shutdown SOURCES shutdown.cpp)
 Application(system_time SOURCES system_time.cpp)
 Application(translate SOURCES translate.cpp LIBS translation)
 Application(watch SOURCES watch.c LIBS ncurses)
+endif()
+
+add_subdirectory(rc)
 Application(xres SOURCES xres.cpp)

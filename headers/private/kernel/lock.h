@@ -21,7 +21,7 @@ struct mutex_waiter;
 typedef struct mutex {
 	const char*				name;
 	struct mutex_waiter*	waiters;
-	spinlock				lock;
+	//spinlock				lock;
 #if KDEBUG
 	thread_id				holder;
 #else
@@ -48,7 +48,7 @@ struct rw_lock_waiter;
 typedef struct rw_lock {
 	const char*				name;
 	struct rw_lock_waiter*	waiters;
-	spinlock				lock;
+	//spinlock				lock;
 	thread_id				holder;
 	int32					count;
 	int32					owner_count;
@@ -264,8 +264,8 @@ mutex_unlock(mutex* lock)
 static inline void
 recursive_lock_transfer_lock(recursive_lock* lock, thread_id thread)
 {
-	if (lock->recursion != 1)
-		panic("invalid recursion level for lock transfer!");
+	//if (lock->recursion != 1)
+		//panic("invalid recursion level for lock transfer!");
 
 #if KDEBUG
 	mutex_transfer_lock(&lock->lock, thread);

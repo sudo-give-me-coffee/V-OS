@@ -5,7 +5,9 @@ include(CMakeParseArguments)
 
 include(build/defs.cmake)
 include(build/deps.cmake)
+if(NOT BUILDTOOLS STREQUAL "1")
 include(build/headers.cmake)
+endif()
 
 # TODO: Add macros for Catalog
 # TODO: Implement EnableWError( target )
@@ -34,7 +36,12 @@ macro( Application name )
 		message( FATAL_ERROR "APPLICATION: 'SOURCES' argument required." )
 	endif()
 
-	list (INSERT _APPLICATION_LIBS 0 be)
+	if(NOT BUILDTOOLS STREQUAL "1")
+		list (INSERT _APPLICATION_LIBS 0 be)
+	else()
+		list (INSERT _APPLICATION_LIBS 0 be_build)
+	endif()
+	
 	list (INSERT _APPLICATION_LIBS 0 root)
 	target_link_libraries(${name} PUBLIC ${_APPLICATION_LIBS})
 

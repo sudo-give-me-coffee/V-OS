@@ -82,7 +82,7 @@ public:
 typedef AutoLocker<rw_lock, ReadWriteLockReadLocking> ReadLocker;
 typedef AutoLocker<rw_lock, ReadWriteLockWriteLocking> WriteLocker;
 
-
+#ifndef __VOS__
 class InterruptsLocking {
 public:
 	inline bool Lock(int* lockable)
@@ -299,7 +299,6 @@ typedef AutoLocker<seqlock, InterruptsWriteSequentialLocking>
 	InterruptsWriteSequentialLocker;
 
 
-#ifndef __VOS__
 class ThreadCPUPinLocking {
 public:
 	inline bool Lock(Thread* thread)
@@ -328,6 +327,7 @@ using BPrivate::MutexLocker;
 using BPrivate::RecursiveLocker;
 using BPrivate::ReadLocker;
 using BPrivate::WriteLocker;
+#ifndef __VOS__
 using BPrivate::InterruptsLocker;
 using BPrivate::SpinLocker;
 using BPrivate::InterruptsSpinLocker;
@@ -337,7 +337,6 @@ using BPrivate::WriteSpinLocker;
 using BPrivate::InterruptsWriteSpinLocker;
 using BPrivate::WriteSequentialLocker;
 using BPrivate::InterruptsWriteSequentialLocker;
-#ifndef __VOS__
 using BPrivate::ThreadCPUPinner;
 using BPrivate::TeamLocker;
 using BPrivate::ThreadLocker;
