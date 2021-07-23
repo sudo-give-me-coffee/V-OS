@@ -22,4 +22,7 @@ jobs:
     - name: configure
       run: cd generated.x86 && ../cmake-3.13.4-Linux-x86_64/bin/cmake .. -GNinja
     - name: ninja
-      run: cd generated.x86 && ninja
+      run: cd generated.x86 && ninja && ninja install && ninja dist
+    - name: list
+      run: find .
+
